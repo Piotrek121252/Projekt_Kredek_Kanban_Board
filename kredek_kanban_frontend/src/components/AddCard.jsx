@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HiOutlineDocumentAdd } from "react-icons/hi";
 import { FaPlusCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function AddCard({ column, setCards }) {
   const [text, setText] = useState("");
@@ -25,7 +26,7 @@ function AddCard({ column, setCards }) {
   return (
     <div>
       {adding ? (
-        <form onSubmit={handleSubmit}>
+        <motion.form layout onSubmit={handleSubmit}>
           <textarea
             onChange={(e) => setText(e.target.value)}
             autoFocus
@@ -47,15 +48,16 @@ function AddCard({ column, setCards }) {
               Anuluj
             </button>
           </div>
-        </form>
+        </motion.form>
       ) : (
-        <button
+        <motion.button
+          layout
           onClick={() => setAdding(true)}
           className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
         >
           <span>Dodaj Zadanie!</span>
           <HiOutlineDocumentAdd />
-        </button>
+        </motion.button>
       )}
     </div>
   );
